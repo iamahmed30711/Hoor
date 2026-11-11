@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#03050c">
+<title>عيد ميلادك لسه مابدأش</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="bg"></div>
+<div id="bgStars"></div>
+
+<!-- ============ شاشة الدعوة ============ -->
+<section id="invite" class="screen">
+  <article class="card" id="card">
+    <i class="card-dot"></i>
+    <div class="twinkles" id="cardStars"></div>
+
+    <header class="card-head">
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M17.5 14.2A7.5 7.5 0 0 1 9.8 4.5a7.6 7.6 0 1 0 7.7 9.7z" fill="#f1f4ff"/>
+      </svg>
+      <span class="badge">فاضل دقيقة واحدة</span>
+      <h1 id="cardTitle">عيد ميلادك لسه مابدأش.</h1>
+      <p class="from" id="fromLine">من أحمد</p>
+    </header>
+
+    <div class="grid">
+      <div class="cell"><small>اليوم</small><b id="vDay"></b></div>
+      <div class="cell"><small>الساعة</small><b id="vHour"></b></div>
+      <div class="cell"><small>المكان</small><b id="vPlace"></b></div>
+      <div class="cell"><small>ملحوظة</small><b id="vNote"></b></div>
+      <div class="stamp" id="stamp">نص الليل</div>
+    </div>
+
+    <p class="hint">دوسي على الزرار، وماتسيبيهوش لحد نص الليل.</p>
+
+    <div class="clock-wrap">
+      <svg id="clock" viewBox="0 0 210 200" aria-label="ساعة">
+        <defs>
+          <linearGradient id="gSilver" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e6ecfb"/>
+            <stop offset=".35" stop-color="#7f8aa8"/>
+            <stop offset=".65" stop-color="#2b3556"/>
+            <stop offset="1" stop-color="#b4bfd8"/>
+          </linearGradient>
+          <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f6dd9a"/>
+            <stop offset=".35" stop-color="#b8883a"/>
+            <stop offset=".65" stop-color="#6e4d1c"/>
+            <stop offset="1" stop-color="#e8c36f"/>
+          </linearGradient>
+          <radialGradient id="gFace" cx=".4" cy=".35" r=".8">
+            <stop offset="0" stop-color="#2a3a68"/>
+            <stop offset=".6" stop-color="#141d3f"/>
+            <stop offset="1" stop-color="#0a1128"/>
+          </radialGradient>
+          <linearGradient id="gShine" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity=".0"/>
+            <stop offset=".5" stop-color="#fff" stop-opacity=".12"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <rect x="192" y="92" width="9" height="16" rx="2" class="crown"/>
+        <circle cx="100" cy="100" r="94" fill="none" stroke="url(#gSilver)" stroke-width="7" class="bezel bezel-silver"/>
+        <circle cx="100" cy="100" r="94" fill="none" stroke="url(#gGold)" stroke-width="7" class="bezel bezel-gold"/>
+        <circle cx="100" cy="100" r="90" fill="url(#gFace)"/>
+        <g id="ticks"></g>
+        <text x="100" y="140" text-anchor="middle" class="dial-label">ليلى</text>
+        <path d="M100 100 L168 40 A90 90 0 0 1 190 100 Z" fill="url(#gShine)" opacity=".7"/>
+
+        <g id="hHour"><line x1="100" y1="110" x2="100" y2="60" class="hand hand-h"/></g>
+        <g id="hMin"><line x1="100" y1="114" x2="100" y2="34" class="hand hand-m"/></g>
+        <g id="hSec"><line x1="100" y1="122" x2="100" y2="26" class="hand hand-s"/></g>
+        <circle cx="100" cy="100" r="4.5" class="pivot"/>
+      </svg>
+      <div class="digital" id="digital">١١:٥٩</div>
+    </div>
+
+    <div class="bar"><i></i></div>
+    <button id="holdBtn" class="hold" type="button">
+      <span class="fill"></span>
+      <span class="label" id="btnLabel">دوسي</span>
+    </button>
+    <p class="msg-back" id="backMsg"></p>
+  </article>
+</section>
+
+<div id="orb"></div>
+
+<!-- حلقات الانتقال -->
+<div id="rings" class="rings" aria-hidden="true">
+  <i class="r r1"></i><i class="r r2"></i><i class="r r3"></i><i class="big"></i>
+</div>
+
+<!-- ============ الشاشة الأخيرة ============ -->
+<section id="sky" aria-live="polite">
+  <canvas id="fx"></canvas>
+  <div id="fallStars"></div>
+
+  <div class="final">
+    <div class="msg">
+      <div class="reveal tiny" id="fTime">١٢:٠٠</div>
+      <h2 class="reveal" id="fTitle"></h2>
+      <div id="fParas"></div>
+      <p class="reveal closing" id="fClosing"></p>
+      <p class="reveal date" id="fDate"></p>
+    </div>
+  </div>
+
+  <svg class="skyline" viewBox="0 0 400 110" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path fill="#4a3f8c" d="M0 110V52h38V40h46v14h30V36h52v18h40V44h60V30h56v20h40V42h38v68z"/>
+    <g fill="#0a0820">
+      <path d="M0 110V82h30V70h40v16h26V74h44V60h36v24h30V68h52V52h46v20h36V62h60v48z"/>
+      <circle cx="58" cy="70" r="10"/>
+      <circle cx="170" cy="60" r="12"/>
+      <circle cx="312" cy="52" r="12"/>
+      <rect x="166" y="38" width="3" height="14"/>
+      <rect x="308" y="30" width="3" height="14"/>
+    </g>
+  </svg>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

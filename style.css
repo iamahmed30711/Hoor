@@ -1,0 +1,175 @@
+:root{
+  --gold:#e3b866;
+  --ink:#1b1648;
+  --ui:'IBM Plex Sans Arabic',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;
+  --serif:'Amiri','Noto Naskh Arabic','Traditional Arabic',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#03050c;color:#eef1fa;font-family:var(--ui)}
+
+/* ---------- الخلفية ---------- */
+#bg{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 112%,rgba(150,25,35,.38),transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% -8%,rgba(70,95,170,.28),transparent 70%),
+    #03050c;
+}
+#bgStars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.tw{position:absolute;border-radius:50%;background:#cfd8ff;opacity:.2;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.12}50%{opacity:.85}}
+
+/* ---------- الشاشة والكارت ---------- */
+.screen{
+  position:fixed;inset:0;z-index:2;display:flex;overflow-y:auto;
+  padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));
+}
+.card{
+  position:relative;margin:auto;width:min(100%,380px);overflow:hidden;
+  background:linear-gradient(180deg,#0d1634 0%,#0a1230 45%,#070c22 100%);
+  border:1px solid rgba(140,160,220,.12);border-radius:6px;
+  box-shadow:0 30px 80px rgba(0,0,0,.65);
+  transition:opacity 1s ease,transform 1s ease,filter 1s ease;
+}
+.card.out{opacity:0;transform:scale(.95);filter:blur(5px)}
+.card-dot{position:absolute;top:8px;left:8px;width:9px;height:9px;border-radius:50%;background:#3b4565;opacity:.7}
+.twinkles{position:absolute;inset:0;pointer-events:none}
+
+.card-head{position:relative;text-align:center;padding:26px 20px 24px;border-bottom:1px solid rgba(140,160,220,.14)}
+.moon{display:block;width:16px;height:16px;margin:0 auto 8px}
+.badge{
+  display:inline-block;font-size:11px;font-weight:400;color:#c9d3f0;letter-spacing:.2px;
+  padding:4px 14px;border:1px solid rgba(160,180,240,.2);border-radius:3px;background:rgba(255,255,255,.03);
+}
+.card-head h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,8vw,32px);line-height:1.5;margin:20px 0 14px;color:#f6f8ff}
+.from{font-family:var(--serif);font-size:14px;color:#b9c4e6}
+
+/* ---------- شبكة البيانات ---------- */
+.grid{position:relative;display:grid;grid-template-columns:1fr 1fr;margin:0 14px}
+.cell{padding:14px 12px;min-height:56px}
+.cell:nth-child(1),.cell:nth-child(2){border-bottom:1px solid rgba(140,160,220,.12)}
+.cell:nth-child(1),.cell:nth-child(3){border-left:1px solid rgba(140,160,220,.12)}
+.cell small{display:block;font-size:10px;color:#8e9ac0;margin-bottom:4px;font-weight:300}
+.cell b{display:block;font-size:13.5px;font-weight:500;color:#f1f4ff;line-height:1.5}
+.stamp{
+  position:absolute;top:8px;left:0;padding:3px 9px;font-size:10px;color:#cdb98a;
+  border:1px solid rgba(227,184,102,.7);border-radius:2px;background:rgba(10,17,40,.85);
+  transform:rotate(-10deg) scale(.4);opacity:0;transition:opacity .5s .3s,transform .6s .3s cubic-bezier(.3,1.6,.5,1);
+}
+.card.gold .stamp{opacity:1;transform:rotate(-10deg) scale(1)}
+
+.hint{text-align:center;font-size:12px;color:#a2aed2;margin:10px 16px 6px;font-weight:300}
+
+/* ---------- الساعة ---------- */
+.clock-wrap{text-align:center;margin-top:6px}
+#clock{width:min(66%,230px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
+.crown{fill:#8590ad;transition:fill .8s}
+.bezel{transition:opacity .9s}
+.bezel-gold{opacity:0}
+.card.gold .bezel-gold{opacity:1}
+.card.gold .bezel-silver{opacity:0}
+.tk{stroke:#cdd6ee;stroke-linecap:round;transition:stroke .8s}
+.card.gold .tk{stroke:var(--gold)}
+.hand{stroke:#f2f5ff;stroke-linecap:round;transition:stroke .8s}
+.hand-h{stroke-width:5}.hand-m{stroke-width:3.6}.hand-s{stroke-width:1.2}
+.card.gold .hand{stroke:var(--gold)}
+.pivot{fill:#f2f5ff;transition:fill .8s}
+.card.gold .pivot{fill:var(--gold)}
+.dial-label{font:400 11px var(--ui);fill:#dfe6ff;transition:fill .8s}
+.card.gold .dial-label{fill:#f3dca6}
+.digital{margin-top:6px;font-size:14px;font-weight:500;color:#e6ebff;transition:color .8s}
+.card.gold .digital{color:#f3dca6}
+
+/* ---------- الزرار ---------- */
+.bar{position:relative;width:112px;height:1px;margin:12px auto 0;background:rgba(255,255,255,.08)}
+.bar i{position:absolute;top:0;bottom:0;right:0;width:calc(var(--p,0)*100%);background:#e8eeff}
+.hold{
+  position:relative;display:block;margin:6px auto 24px;min-width:104px;padding:12px 30px;
+  border-radius:999px;border:1px solid rgba(160,180,240,.25);overflow:hidden;
+  background:linear-gradient(180deg,#24336a,#18224a);color:#eef2ff;
+  font:500 15px var(--ui);cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12);
+  touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+  transition:min-width .3s,border-color .8s,box-shadow .8s;
+}
+.hold .fill{position:absolute;left:0;right:0;bottom:0;height:calc(var(--p,0)*100%);background:rgba(175,195,255,.38)}
+.hold .label{position:relative}
+.hold:focus-visible{outline:2px solid #9db2ff;outline-offset:3px}
+.card.holding .hold{min-width:118px}
+.card.gold .hold{border-color:var(--gold);box-shadow:0 0 22px rgba(227,184,102,.35),inset 0 1px 0 rgba(255,255,255,.12)}
+.msg-back{
+  min-height:18px;margin:-10px 0 22px;text-align:center;font-size:12.5px;color:#dfe6ff;
+  opacity:0;transform:translateY(-4px);transition:opacity .4s,transform .4s;
+}
+.msg-back.show{opacity:1;transform:none}
+
+/* الكرة اللامعة */
+#orb{
+  position:fixed;z-index:20;left:0;top:0;width:34px;height:34px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 35% 30%,#fff 0,#c3cce2 35%,#667290 78%,#3b4562 100%);
+  box-shadow:0 0 18px 4px rgba(190,205,255,.55);
+  opacity:0;transform:translate(-50%,-50%) scale(.6);transition:opacity .3s,transform .3s;
+}
+#orb.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* ---------- حلقات الانتقال ---------- */
+.rings{position:fixed;inset:0;z-index:6;display:grid;place-items:center;pointer-events:none;opacity:0}
+.rings.go{opacity:1}
+.rings .r{
+  grid-area:1/1;border:3px solid var(--gold);border-radius:50%;opacity:0;transform:scale(.2);
+  box-shadow:0 0 22px rgba(227,184,102,.35),inset 0 0 18px rgba(227,184,102,.25);
+}
+.rings .r1{width:120px;height:120px}
+.rings .r2{width:260px;height:260px}
+.rings .r3{width:420px;height:420px}
+.rings.go .r{animation:ringIn 1.3s cubic-bezier(.2,.8,.2,1) forwards}
+.rings.go .r2{animation-delay:.18s}
+.rings.go .r3{animation-delay:.36s}
+@keyframes ringIn{0%{opacity:0;transform:scale(.2)}60%{opacity:1}100%{opacity:1;transform:scale(1)}}
+.rings .big{
+  grid-area:1/1;width:38vmin;height:38vmin;border-radius:50%;opacity:0;
+  border:16px solid rgba(255,225,185,.55);filter:blur(7px);
+}
+.rings.bigphase .r{animation:none;opacity:0;transition:opacity .6s}
+.rings.bigphase .big{animation:bigOut 2.4s ease-out forwards}
+@keyframes bigOut{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(7)}}
+
+/* ---------- الشاشة الأخيرة ---------- */
+#sky{
+  position:fixed;inset:0;z-index:4;visibility:hidden;
+  clip-path:circle(0% at 50% 50%);
+  transition:clip-path 2.3s cubic-bezier(.55,0,.25,1);
+  background:
+    radial-gradient(ellipse 70% 22% at 50% 50%,rgba(255,255,255,.28),transparent 70%),
+    linear-gradient(180deg,#191858 0%,#33298a 20%,#7c70d6 40%,#c3a6ec 56%,#f2a9c4 76%,#fbc79c 91%,#fddcab 100%);
+}
+#sky.open{visibility:visible;clip-path:circle(150% at 50% 50%)}
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#fallStars{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.fs{
+  position:absolute;top:-30px;background:#fff;opacity:0;
+  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-6vh) rotate(0);opacity:0}
+  10%{opacity:.95}
+  85%{opacity:.9}
+  100%{transform:translateY(95vh) rotate(300deg);opacity:0}
+}
+
+.final{position:absolute;inset:0;z-index:3;overflow-y:auto;display:flex;padding:9vh 22px 24vh}
+.msg{margin:auto;width:100%;max-width:430px;text-align:center;color:var(--ink)}
+.tiny{font-size:12px;color:#3c3a8a;margin-bottom:14px;font-weight:500}
+#fTitle{font-family:var(--serif);font-weight:700;font-size:clamp(25px,7.4vw,32px);line-height:1.65;color:#17123f;margin-bottom:18px}
+#fParas p{font-family:var(--serif);font-size:clamp(17px,4.7vw,19.5px);line-height:2;color:#2a2362;margin-bottom:14px}
+.closing{font-family:var(--serif);font-weight:700;font-size:clamp(19px,5.4vw,22px);line-height:1.8;color:#17123f;margin:8px 0 18px}
+.date{font-size:12.5px;color:#5a2c66;font-weight:500}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity 1.3s ease,transform 1.3s ease}
+.reveal.in{opacity:1;transform:none}
+
+.skyline{position:absolute;z-index:5;left:0;right:0;bottom:0;width:100%;height:16vh;min-height:90px;pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  .fs,.tw{animation:none}
+}
